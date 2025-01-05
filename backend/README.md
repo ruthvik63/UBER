@@ -147,19 +147,45 @@ The request body should be a JSON object with the following fields:
   ]
 }
 ```
-### Authentication Error (401 Unauthorized)
-- `Description`: Invalid email or password.
-- `Body`: A JSON object containing an error message.
-### Example:
-```JSON 
+
+# User Profile endpoint
+
+### Endpoint
+`GET /users/profile`
+### Description
+This endpoint is used to get the profile of the authenticated user.
+
+### Responses
+
+#### Success (200 OK)
+- `Description`: User profile retrieved successfully.
+- `Body`: A JSON object containing the user data.
+- `Example`:
+```JSON
 {
-  "message": "Invalid email or password"
+  "_id": "60d0fe4f5311236168a109ca",
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "socketId": null
 }
 ```
-### Status Codes
-- `200 OK`: User successfully authenticated.
-- `400 Bad Request`: Validation errors in the input data.
-- `401 Unauthorized`: Invalid email or password.
-### Notes
-Ensure that the `Content-Type` header is set to `application/json` when making requests to this endpoint.
-The `Authorization` header is not required for this endpoint.
+# User Logout Endpoint
+### Endpoint
+`GET /users/logout`
+
+### Description
+This endpoint is used to log out the authenticated user. It clears the authentication token and adds it to the blacklist.
+
+### Responses
+#### Success (200 OK)
+- `Description`: User logged out successfully.
+- `Body`: A JSON object containing a success message.
+- `Example`:
+```JSON
+{
+  "message": "User logged out successfully"
+}
+```
